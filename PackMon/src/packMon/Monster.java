@@ -5,6 +5,9 @@ package packMon;
  */
 public class Monster {
 
+	/*
+	 * Fields
+	 */
 	private String name;
 	private int quality;
 	private int monsterID;
