@@ -29,7 +29,7 @@ public class Monster {
 	 * Attack method that calculates how much damage the monster will inflict on the player
 	 */
 	public int attack() {
-		
+		return -1;
 	}
 	
 	/**
