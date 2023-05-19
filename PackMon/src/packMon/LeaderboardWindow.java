@@ -26,22 +26,92 @@ public class LeaderboardWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        BackgroundPanel = new javax.swing.JPanel();
+        LeaderboardLabel = new javax.swing.JLabel();
+        MainMenuButton = new javax.swing.JButton();
+        HighScoresTextArea = new javax.swing.JTextArea();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(969, 553));
+
+        BackgroundPanel.setBackground(new java.awt.Color(0, 153, 0));
+        BackgroundPanel.setPreferredSize(new java.awt.Dimension(969, 600));
+
+        LeaderboardLabel.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        LeaderboardLabel.setForeground(new java.awt.Color(255, 255, 255));
+        LeaderboardLabel.setText("LEADERBOARD");
+
+        MainMenuButton.setBackground(new java.awt.Color(204, 204, 204));
+        MainMenuButton.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        MainMenuButton.setForeground(new java.awt.Color(0, 0, 0));
+        MainMenuButton.setText("Main Menu");
+        MainMenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MainMenuButtonActionPerformed(evt);
+            }
+        });
+
+        HighScoresTextArea.setEditable(false);
+        HighScoresTextArea.setBackground(new java.awt.Color(0, 255, 0));
+        HighScoresTextArea.setColumns(40);
+        HighScoresTextArea.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        HighScoresTextArea.setRows(10);
+        HighScoresTextArea.setTabSize(7);
+
+        javax.swing.GroupLayout BackgroundPanelLayout = new javax.swing.GroupLayout(BackgroundPanel);
+        BackgroundPanel.setLayout(BackgroundPanelLayout);
+        BackgroundPanelLayout.setHorizontalGroup(
+            BackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BackgroundPanelLayout.createSequentialGroup()
+                .addGroup(BackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(BackgroundPanelLayout.createSequentialGroup()
+                        .addGap(290, 290, 290)
+                        .addComponent(LeaderboardLabel))
+                    .addGroup(BackgroundPanelLayout.createSequentialGroup()
+                        .addGap(321, 321, 321)
+                        .addComponent(MainMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(337, Short.MAX_VALUE))
+            .addGroup(BackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(BackgroundPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(HighScoresTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 943, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        BackgroundPanelLayout.setVerticalGroup(
+            BackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(BackgroundPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(LeaderboardLabel)
+                .addGap(413, 413, 413)
+                .addComponent(MainMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(BackgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(BackgroundPanelLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(HighScoresTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(BackgroundPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(BackgroundPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    //========================================= ACTION LISTENERS ===========================
+    public void MainMenuButtonActionPerformed(java.awt.event.ActionEvent evt)
+    {
+    	System.out.println("MAIN MENU BUTTON");
+    }
     /**
      * @param args the command line arguments
      */
@@ -78,5 +148,9 @@ public class LeaderboardWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel BackgroundPanel;
+    private javax.swing.JTextArea HighScoresTextArea;
+    private javax.swing.JLabel LeaderboardLabel;
+    private javax.swing.JButton MainMenuButton;
     // End of variables declaration//GEN-END:variables
 }
