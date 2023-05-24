@@ -60,7 +60,7 @@ CREATE TABLE save (
 SET FOREIGN_KEY_CHECKS=0;
 
 INSERT INTO monster VALUES
-	(1,'Monsnore',2,'Slash',15), (2,'Mandibite',5,'Bite',35), (3,'Gobbledom',10,'Gobble',50)
+	(1,'Chickoala',2,'Slash',15), (2,'Rake',5,'Bite',35), (3,'Sloblin',10,'Gobble',50), (4, 'Smark', 8, 'SharkDance', 10) 
     
 ;
 
