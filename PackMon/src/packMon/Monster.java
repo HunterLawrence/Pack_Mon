@@ -19,6 +19,7 @@ public class Monster {
 	private int attackPower;
 	private int health;
 	
+	
 	/**
 	 * Constructor method
 	 */
@@ -29,6 +30,10 @@ public class Monster {
 		this.attackName = attackName;
 		this.attackPower = attackPower;
 		this.health = health;
+	}
+	
+	public Monster() {
+		// TODO Auto-generated constructor stub
 	}
 	
 	/**
