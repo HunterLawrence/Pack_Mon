@@ -1,5 +1,9 @@
 package packMon;
 
+// Importing the random class for the attack method
+import java.util.Random;
+
+
 /**
  * Class for the monsters in PackMon
  */
@@ -13,23 +17,26 @@ public class Monster {
 	private int monsterID;
 	private String attackName;
 	private int attackPower;
+	private int health;
 	
 	/**
 	 * Constructor method
 	 */
-	public Monster(String name, int quality, int monsterID, String attackName, int attackPower) {
+	public Monster(String name, int quality, int monsterID, String attackName, int attackPower, int health) {
 		this.name = name;
 		this.quality = quality;
 		this.monsterID = monsterID;
 		this.attackName = attackName;
 		this.attackPower = attackPower;
+		this.health = health;
 	}
 	
 	/**
 	 * Attack method that calculates how much damage the monster will inflict on the player
 	 */
 	public int attack() {
-		return -1;
+		Random rand = new Random();
+		return rand.nextInt(attackPower);
 	}
 	
 	/**
@@ -58,6 +65,13 @@ public class Monster {
 	 */
 	public void setPower(int power) {
 		attackPower = power;
+	}
+	
+	/**
+	 * Setter method for health
+	 */
+	public void setHealth(int hp) {
+		health = hp;
 	}
 	
 	/**
@@ -93,6 +107,19 @@ public class Monster {
 	 */
 	public String getAttackName() {
 		return attackName;
+	}
+	
+	/**
+	 * Getter method for health
+	 */
+	public int getHP() {
+		return health;
+	}
+	
+	// toString method
+	public String toString() {
+		return "Monster name: " + getName() + "\nUses attack: " + getAttackName() + ", which can deal up to " +
+				getPower() + " damage!" + "\nRarity: " + getQuality();
 	}
 	
 	
