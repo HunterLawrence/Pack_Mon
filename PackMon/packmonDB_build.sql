@@ -16,6 +16,7 @@ CREATE TABLE monster (
     monsterVal	CHAR(3)		NOT NULL,
     attackName	VARCHAR(20)	NOT NULL,	
     attackPow	CHAR(3)		NOT NULL,
+    monsterHP	INT			NOT NULL,
 	CONSTRAINT	monPK
 		PRIMARY KEY	(monsterID)
 ) ENGINE INNODB
@@ -60,7 +61,7 @@ CREATE TABLE save (
 SET FOREIGN_KEY_CHECKS=0;
 
 INSERT INTO monster VALUES
-	(1,'Chickoala',2,'Slash',15), (2,'Rake',5,'Bite',35), (3,'Sloblin',10,'Gobble',50), (4, 'Smark', 8, 'SharkDance', 10) 
+	(1,'Chickoala',2,'Slash',15, 20), (2,'Rake',5,'Bite',35, 25), (3,'Sloblin',10,'Gobble',50, 50), (4, 'Smark', 8, 'SharkDance', 10, 10) 
     
 ;
 
