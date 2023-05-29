@@ -11,6 +11,7 @@ public class Player {
 	// Fields
 	private int playerID;
 	private int health;
+	private int maxHealth;
 	private String name;
 	private String weapon;
 	
@@ -22,6 +23,7 @@ public class Player {
 		name = pName;
 		weapon = pWeapon;
 		health = hp;
+		maxHealth = hp;
 	}
 	
 	/*
@@ -51,6 +53,9 @@ public class Player {
 	}
 	public int getHP() {
 		return health;
+	}
+	public int getMaxHealth() {
+		return maxHealth;
 	}
 	
 	// Setter methods

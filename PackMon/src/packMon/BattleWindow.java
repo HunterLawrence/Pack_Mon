@@ -8,7 +8,7 @@ package packMon;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
-
+import java.util.Timer;
 /**
  *
  * @author Ruthl
@@ -224,20 +224,6 @@ public class BattleWindow extends javax.swing.JFrame {
         );
 
         EnemyLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        
-        //================= HOW ITS DONE ============================
-        //TODO DELETE THIS EVENTUALLY
-        /*
-  		
-        ImageIcon img = new ImageIcon("src\\MonsterImages\\Rake.png");
-        Image newImg = img.getImage();
-        newImg = newImg.getScaledInstance(250, 250, java.awt.Image.SCALE_SMOOTH);
-        img = new ImageIcon(newImg);
-        EnemyLabel.setIcon(img);
-         
-         */
-        
-        // ==========================================================
 
         PlayerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -302,15 +288,167 @@ public class BattleWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
-
+   
     private void AttackButtonActionPerformed(java.awt.event.ActionEvent evt) 
-    {                                         
-        
+    {          
+    	// The player's action
+    	printMessage(control.playerAttack());
+    	updateMonsterStats();
+    	
+    	// delay 3 seconds
+    	Timer t = new Timer();
+    	t.schedule(null, 3000);
+    	
+    	// check if monster is defeated
+    	if(control.monster.getHP() <= 0)
+    	{
+    		// get a new monster
+    		printMessage(control.newMonster());
+    		updateMonsterStats();
+    		updateImage(control.monster.getName());
+    	}
+    	else
+    	{
+	    	// The enemy's action
+	        printMessage(control.monsterAttack());
+	        updatePlayerStats();
+	        
+	        // check if the player is defeated
+	        if(control.player.getHP() <= 0)
+	        {
+	        	// disable buttons
+	        	disableButtons();
+	        }
+    	}
     }
     
     private void HealButtonActionPerformed(java.awt.event.ActionEvent evt)
     {
+    	// The player's action
+    	printMessage(control.playerHeal());
+    	updatePlayerStats();
     	
+    	// delay 3 seconds
+    	Timer t = new Timer();
+    	t.schedule(null, 3000);
+    	
+    	// The enemy's action
+    	printMessage(control.monsterAttack());
+        updatePlayerStats();
+        
+        // check if the player is defeated
+        if(control.player.getHP() <= 0)
+        {
+        	// disable buttons
+        	disableButtons();
+        }
+    }
+    
+    
+    
+    private static final String MONSTER_IMAGE_FILE_LOCATION = "src\\MonsterImages\\";
+    
+    /***
+     * updates the enemy monster on screen by searching for the file name that corresponds to the given monster name
+     * @param monsterName
+     */
+    private void updateImage(String monsterName)
+    {
+    	String imageName = MONSTER_IMAGE_FILE_LOCATION + monsterName + ".png";
+    	ImageIcon img = new ImageIcon(imageName);
+        Image newImg = img.getImage();
+        newImg = newImg.getScaledInstance(250, 250, java.awt.Image.SCALE_SMOOTH);
+        img = new ImageIcon(newImg);
+        EnemyLabel.setIcon(img);
+    }
+    
+    private void updatePlayerImage()
+    {
+    	String imageName = MONSTER_IMAGE_FILE_LOCATION + "Player.png";
+    	ImageIcon img = new ImageIcon(imageName);
+        Image newImg = img.getImage();
+        newImg = newImg.getScaledInstance(250, 250, java.awt.Image.SCALE_SMOOTH);
+        img = new ImageIcon(newImg);
+        PlayerLabel.setIcon(img);
+    }
+    
+    /***
+     * Initializes a new monster
+     * @param name The name of the monster
+     * @param health The maximum health of the monster
+     */
+    private void updateMonsterStats()
+    {
+    	EnemyMonsterName.setText(control.monster.getName());
+    	EnemyMonsterHealthDenominator.setText("" + control.monster.getMaxHealth());
+    	EnemyMonsterHealthNumerator.setText("" + control.monster.getHP());
+    	EnemyMonsterHealthBar.setMaximum(control.monster.getMaxHealth());
+    	EnemyMonsterHealthBar.setMinimum(0);
+    	EnemyMonsterHealthBar.setValue(control.monster.getHP());
+    }
+    
+    /***
+     * Initializes the player
+     * @param name The player's name
+     * @param health The player's maximum health
+     */
+    private void updatePlayerStats()
+    {
+    	PlayerName.setText(control.player.getPlayerName());
+    	PlayerHealthDenominator.setText("" + control.player.getMaxHealth());
+    	PlayerHealthNumerator.setText("" + control.player.getHP());
+    	PlayerHealthBar.setMaximum(control.player.getMaxHealth());
+    	PlayerHealthBar.setMinimum(0);
+    	PlayerHealthBar.setValue(control.player.getHP());
+    }
+    
+    /***
+     * Updates the monster's health to a new (given) value
+     * @param health The new level of monster health
+     */
+    private void updateEnemyMonsterHealth(int health)
+    {
+    	EnemyMonsterHealthNumerator.setText("" + health);
+    	EnemyMonsterHealthBar.setValue(health);
+    }
+    
+    private void updatePlayerHealth(int health)
+    {
+    	PlayerHealthNumerator.setText("" + health);
+    	EnemyMonsterHealthBar.setValue(health);
+    }
+    
+    /***
+     * Prints a message to the player in the message space
+     * @param message The message to display
+     */
+    private void printMessage(String message)
+    {
+    	OutputTextArea.setText(message);
+    }
+    
+    private void disableButtons()
+    {
+    	AttackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AttackButtonActionPerformedDefective(evt);
+            }
+        });
+    	
+    	HealButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HealButtonActionPerformedDefective(evt);
+            }
+        });
+    }
+    
+    private void AttackButtonActionPerformedDefective(java.awt.event.ActionEvent evt)
+    {
+    	printMessage(control.player.getPlayerName() + " cannot attack while dead...");
+    }
+    private void HealButtonActionPerformedDefective(java.awt.event.ActionEvent evt)
+    {
+    	printMessage(control.player.getPlayerName() + " cannot heal while dead...");
     }
 
     /**
@@ -343,11 +481,25 @@ public class BattleWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BattleWindow().setVisible(true);
+                BattleWindow window = new BattleWindow();
+                window.setVisible(true);
+                
+                
+                // Start up functionality
+                // create a new control object
+                control = new GameControl();
+                
+                // Set player image
+                window.updatePlayerImage();
+                // Set monsterImage
+                window.updateImage(control.monster.getName());
             }
         });
     }
 
+    // GameControl declaration
+    private static GameControl control;
+    
     // Variables declaration - do not modify                     
     private javax.swing.JPanel BackgroundPanel;
     private javax.swing.JPanel ButtonPanel;

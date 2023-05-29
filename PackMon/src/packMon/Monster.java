@@ -18,6 +18,7 @@ public class Monster {
 	private String attackName;
 	private int attackPower;
 	private int health;
+	private int maxHealth;
 	
 	
 	/**
@@ -30,6 +31,7 @@ public class Monster {
 		this.attackName = attackName;
 		this.attackPower = attackPower;
 		this.health = health;
+		this.maxHealth = health;
 	}
 	
 	public Monster() {
@@ -119,6 +121,13 @@ public class Monster {
 	 */
 	public int getHP() {
 		return health;
+	}
+	
+	/**
+	 * Getter method for maxHealth
+	 */
+	public int getMaxHealth() {
+		return maxHealth;
 	}
 	
 	// toString method
