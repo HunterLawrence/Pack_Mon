@@ -70,7 +70,7 @@ public class BattleWindow extends javax.swing.JFrame {
         AttackButton.setBackground(new java.awt.Color(204, 204, 204));
         AttackButton.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         AttackButton.setForeground(new java.awt.Color(0, 0, 0));
-        AttackButton.setText("USER_OPTION_1");
+        AttackButton.setText("ATTACK");
         AttackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AttackButtonActionPerformed(evt);
@@ -80,7 +80,7 @@ public class BattleWindow extends javax.swing.JFrame {
         HealButton.setBackground(new java.awt.Color(204, 204, 204));
         HealButton.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         HealButton.setForeground(new java.awt.Color(0, 0, 0));
-        HealButton.setText("USER_OPTION_2");
+        HealButton.setText("HEAL");
         HealButton.addActionListener(new java.awt.event.ActionListener() {
         	public void actionPerformed(java.awt.event.ActionEvent evt) {
         		HealButtonActionPerformed(evt);
