@@ -13,12 +13,12 @@ public class Player {
 	private int health;
 	private int maxHealth;
 	private String name;
-	private String weapon;
+	private Weapon weapon;
 	
 	/*
 	 * Constructor class
 	 */
-	public Player(int id, String pName, String pWeapon, int hp) {
+	public Player(int id, String pName, Weapon pWeapon, int hp) {
 		playerID = id;
 		name = pName;
 		weapon = pWeapon;
@@ -31,7 +31,7 @@ public class Player {
 	 */
 	public int attack() {
 		Random rand = new Random();
-		return rand.nextInt(5,15);
+		return rand.nextInt(10) + 5;
 	}
 	
 	/*
@@ -45,10 +45,10 @@ public class Player {
 	public int getID() {
 		return playerID;
 	}
-	public String getPlayerName() {
+	public String getName() {
 		return name;
 	}
-	public String getWeapon() {
+	public Weapon getWeapon() {
 		return weapon;
 	}
 	public int getHP() {
@@ -65,7 +65,7 @@ public class Player {
 	public void setPlayerName(String newName) {
 		name = newName;
 	}
-	public void setWeapon(String newWeapon) {
+	public void setWeapon(Weapon newWeapon) {
 		weapon = newWeapon;
 	}
 	public void setHealth(int hp) {
@@ -74,7 +74,7 @@ public class Player {
 	
 	// toString method
 	public String toString() {
-		return "Player Name: " + getPlayerName() + "\nWeapon: " + getWeapon() +
+		return "Player Name: " + getName() + "\nWeapon: " + getWeapon() +
 				"\nPlayer ID: " + getID();
 	}
 	

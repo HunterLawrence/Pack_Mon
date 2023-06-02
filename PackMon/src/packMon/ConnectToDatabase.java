@@ -14,7 +14,7 @@ public class ConnectToDatabase {
 	 * Connect to the database
 	 */
 	public void connect() {
-		String url = "hdbc:mysql://localhost:3306/packmon";
+		String url = "jdbc:mysql://localhost:3306/packmon";
 		String userName = "root";
 		String pass = "cs380";
 		
@@ -32,7 +32,7 @@ public class ConnectToDatabase {
 	 */
 	public Monster retrieveMonster() throws SQLException {
 		Random rand = new Random();
-		int id = rand.nextInt(4); // Selecting one of four monsters to fight
+		int id = rand.nextInt(4) + 1; // Selecting one of four monsters to fight
 		ConnectToDatabase ctd = new ConnectToDatabase();
 		ctd.connect();
 		String query = "SELECT * FROM monster WHERE monsterID = " + id;

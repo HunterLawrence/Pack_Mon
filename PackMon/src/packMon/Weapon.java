@@ -55,7 +55,7 @@ public class Weapon {
 	/**
 	 * Getter method for weaponName
 	 */
-	public String getWeaponName() {
+	public String getName() {
 		return weaponName;
 	}
 	

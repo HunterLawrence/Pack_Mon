@@ -394,7 +394,7 @@ public class BattleWindow extends javax.swing.JFrame {
      */
     private void updatePlayerStats()
     {
-    	PlayerName.setText(control.player.getPlayerName());
+    	PlayerName.setText(control.player.getName());
     	PlayerHealthDenominator.setText("" + control.player.getMaxHealth());
     	PlayerHealthNumerator.setText("" + control.player.getHP());
     	PlayerHealthBar.setMaximum(control.player.getMaxHealth());
@@ -444,11 +444,11 @@ public class BattleWindow extends javax.swing.JFrame {
     
     private void AttackButtonActionPerformedDefective(java.awt.event.ActionEvent evt)
     {
-    	printMessage(control.player.getPlayerName() + " cannot attack while dead...");
+    	printMessage(control.player.getName() + " cannot attack while dead...");
     }
     private void HealButtonActionPerformedDefective(java.awt.event.ActionEvent evt)
     {
-    	printMessage(control.player.getPlayerName() + " cannot heal while dead...");
+    	printMessage(control.player.getName() + " cannot heal while dead...");
     }
 
     /**
