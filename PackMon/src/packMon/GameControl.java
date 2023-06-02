@@ -3,14 +3,20 @@ package packMon;
 public class GameControl {
 	public Player player;
 	public Monster monster;
+	public Weapon weapon;
 	ConnectToDatabase connection;
+
+	public int pointScore;
 	
 	/***
 	 * Connects to the database then Initializes the player as well as a random monster
 	 */
 	public GameControl()
 	{
-		
+		connection.connect();
+		weapon = new Weapon(10, "Shredder", 00);
+		player = new Player(00, "Test", weapon, 100);
+		monster = newMonster();
 	}
 	
 	/***
@@ -30,7 +36,18 @@ public class GameControl {
 		 * 
 		 *	return format ("The " + monsterName + " has been defeated! " + scoreToAdd + " points earned.")
 		*/
-		return "";
+		int damageDelt = player.attack();
+
+		String str = "";
+
+		if(damageDelt >= monster.getHP()){
+			pointScore += 10;
+			str = "The " + monster.getName() + " has been defeated! 10 points earned.";
+		}else if (damageDelt < monster.getHP()){
+			str = player.getName() + " deals " + damageDelt + " to the " + monster.getName() + " using " + weapon.getName() + "."
+		}
+
+		return str;
 	}
 	
 	/***
@@ -44,8 +61,10 @@ public class GameControl {
 		 * 
 		 * return format (playerName + " regains + " + healthRestored + " health.")
 		 */
-		
-		return "";
+		int potion = 50;
+		player.heal(potion);
+		String str = player.getName() + " regains " + potion + " health.");
+		return str;
 	}
 	
 	/***
@@ -65,7 +84,18 @@ public class GameControl {
 		 * 
 		 * return format (playerName + " was overcome by The " + monsterName + ". " + playerName + " died with a score of " + playerScore + ".")
 		 */
-		return "";
+		int monsterDamageDelt = monster.attack();
+
+		String str = "";
+
+		if(monsterDamageDelt >= player.getHP()){
+
+			str = player.getName() " was overwhelmed by the " + monster.getName)() + ". " + player.getName() + " died with a score of " + pointScore + ".";
+		}else if (monsterDamageDelt < player.getHP()){
+			str = monster.getName() + " deals " + damageDelt + " to the " + player.getName() + " using " + monster.getAttackName() + "."
+		}
+
+		return str;
 	}
 	
 	/***
@@ -79,8 +109,11 @@ public class GameControl {
 		 * 
 		 * return format ("The " + monsterName + " appears!")
 		 */
-		
-		return "";
+		monster = connection.retrieveMonster();
+
+		String str = "The " + monster.getName() + " appears!"
+
+		return str;
 	}
 	
 }
