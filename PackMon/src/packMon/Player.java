@@ -39,6 +39,11 @@ public class Player {
 	 */
 	public void heal(int hp) {
 		health += hp;
+		
+		if(health > maxHealth)
+		{
+			health = maxHealth;
+		}
 	}
 	
 	// Getter methods

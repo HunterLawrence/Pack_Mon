@@ -16,7 +16,7 @@ public class GameControl {
 		connection = new ConnectToDatabase();
 		connection.connect();
 		weapon = new Weapon(10, "Shredder", 00);
-		player = new Player(00, "Test", weapon, 100);
+		player = new Player(00, "Tento", weapon, 100);
 		try {
 			monster = connection.retrieveMonster();
 		}
@@ -43,18 +43,27 @@ public class GameControl {
 		 * 
 		 *	return format ("The " + monsterName + " has been defeated! " + scoreToAdd + " points earned.")
 		*/
-		int damageDelt = player.attack();
-
-		String str = "";
-
-		if(damageDelt >= monster.getHP()){
-			pointScore += 10;
-			str = "The " + monster.getName() + " has been defeated! 10 points earned.";
-		}else if (damageDelt < monster.getHP()){
-			str = player.getName() + " deals " + damageDelt + " to the " + monster.getName() + " using " + weapon.getName() + ".";
+		if(player.getHP() == 0)
+		{
+			return player.getName() + " cannot attack while dead...";
 		}
-
-		return str;
+		else
+		{
+			int damageDelt = player.attack();
+	
+			String str = "";
+	
+			if(damageDelt >= monster.getHP()){
+				monster.setHealth(0);
+				pointScore += 10;
+				str = "The " + monster.getName() + " has been defeated! 10 points earned.";
+			}else if (damageDelt < monster.getHP()){
+				monster.setHealth(monster.getHP() - damageDelt);
+				str = player.getName() + " deals " + damageDelt + " to the " + monster.getName() + " using " + weapon.getName() + ".";
+			}
+	
+			return str;
+		}
 	}
 	
 	/***
@@ -68,10 +77,20 @@ public class GameControl {
 		 * 
 		 * return format (playerName + " regains + " + healthRestored + " health.")
 		 */
-		int potion = 50;
-		player.heal(potion);
-		String str = player.getName() + " regains " + potion + " health.";
-		return str;
+		if(player.getHP() == 0)
+		{
+			return player.getName() + " cannot heal while dead...";
+		}
+		else
+		{
+			int potion = 50;
+			int playerPreviousHealth = player.getHP();
+			player.heal(potion);
+			
+			int playerHealthRegained = player.getHP() - playerPreviousHealth;
+			String str = player.getName() + " regains " + playerHealthRegained + " health.";
+			return str;
+		}
 	}
 	
 	/***
@@ -96,10 +115,11 @@ public class GameControl {
 		String str = "";
 
 		if(monsterDamageDelt >= player.getHP()){
-
+			player.setHealth(0);
 			str = player.getName() + " was overwhelmed by the " + monster.getName() + ". " + player.getName() + " died with a score of " + pointScore + ".";
 		}else if (monsterDamageDelt < player.getHP()){
-			str = monster.getName() + " deals " + monsterDamageDelt + " to the " + player.getName() + " using " + monster.getAttackName() + ".";
+			player.setHealth(player.getHP() - monsterDamageDelt);
+			str = monster.getName() + " deals " + monsterDamageDelt + " to " + player.getName() + " using " + monster.getAttackName() + ".";
 		}
 
 		return str;

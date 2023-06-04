@@ -35,10 +35,12 @@ public class ConnectToDatabase {
 		int id = rand.nextInt(4) + 1; // Selecting one of four monsters to fight
 		ConnectToDatabase ctd = new ConnectToDatabase();
 		ctd.connect();
-		String query = "SELECT * FROM monster WHERE monsterID = " + id;
+		System.out.println(id);
+		String query = "SELECT * FROM monster WHERE monsterID = " + id + ";";
 		Statement statement = con.createStatement();
 		ResultSet result = statement.executeQuery(query);
-		return new Monster(result.getString("monsterName"), result.getInt("monsterVal"), result.getInt("monsterID"), result.getString("attackName"), result.getInt("attackPower"), result.getInt("monsterHP"));
+		result.next();
+		return new Monster(result.getString("monsterName"), result.getInt("monsterVal"), result.getInt("monsterID"), result.getString("attackName"), result.getInt("attackPow"), result.getInt("monsterHP"));
 		
 	}
 }
