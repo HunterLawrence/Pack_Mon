@@ -323,13 +323,19 @@ public class BattleWindow extends javax.swing.JFrame {
     	}
     	else
     	{
-    		// delay the monster attack to allow the player to read the heal message
+    		// delay the monster attack to allow the player to read the attack message
         	Timer timer = new Timer(2000, new ActionListener() {
         		public void actionPerformed(ActionEvent e)
         		{
         			// The enemy's action
         	    	printMessage(control.monsterAttack());
         	        updatePlayerStats();
+        	        
+        	        // update player image if player is downed
+        			if(control.player.getHP() == 0)
+        			{
+        				updatePlayerImage("PlayerDown");
+        			}
         	        
         	        // re-enable the buttons
         	        HealButton.setEnabled(true);
@@ -339,6 +345,8 @@ public class BattleWindow extends javax.swing.JFrame {
         	timer.setRepeats(false);
         	timer.start();
     	}
+    	
+    	
     }
     
     private void HealButtonActionPerformed(java.awt.event.ActionEvent evt)
@@ -357,6 +365,12 @@ public class BattleWindow extends javax.swing.JFrame {
     			// The enemy's action
     	    	printMessage(control.monsterAttack());
     	        updatePlayerStats();
+    	        
+    	        // update player image if player is downed
+    			if(control.player.getHP() == 0)
+    			{
+    				updatePlayerImage("PlayerDown");
+    			}
     	        
     	        // re-enable the buttons
     	        HealButton.setEnabled(true);
@@ -386,9 +400,9 @@ public class BattleWindow extends javax.swing.JFrame {
         EnemyLabel.setIcon(img);
     }
     
-    private void updatePlayerImage()
+    private void updatePlayerImage(String updateImageName)
     {
-    	String imageName = MONSTER_IMAGE_FILE_LOCATION + "Player.png";
+    	String imageName = MONSTER_IMAGE_FILE_LOCATION + updateImageName + ".png";
     	ImageIcon img = new ImageIcon(imageName);
         Image newImg = img.getImage();
         newImg = newImg.getScaledInstance(250, 250, java.awt.Image.SCALE_SMOOTH);
@@ -476,7 +490,7 @@ public class BattleWindow extends javax.swing.JFrame {
                 control = new GameControl();
                 
                 // Set player image
-                window.updatePlayerImage();
+                window.updatePlayerImage("Player");
                 window.updatePlayerStats();
                 
                 // Set monsterImage
