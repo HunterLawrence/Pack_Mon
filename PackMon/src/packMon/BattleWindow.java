@@ -54,6 +54,8 @@ public class BattleWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        setResizable(false);
+        
         BackgroundPanel.setBackground(new java.awt.Color(0, 153, 0));
 
         OutputTextArea.setBackground(new java.awt.Color(102, 102, 0));
