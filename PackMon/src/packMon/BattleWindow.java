@@ -63,6 +63,7 @@ public class BattleWindow extends javax.swing.JFrame {
         OutputTextArea.setRows(2);
         OutputTextArea.setLineWrap(true);
         OutputTextArea.setText("WELCOME TO PACKMON!");
+        OutputTextArea.setEditable(false);
         OutputPane.setViewportView(OutputTextArea);
 
         ButtonPanel.setBackground(new java.awt.Color(255, 255, 255));
